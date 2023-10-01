@@ -15,6 +15,12 @@ TagManager:
   - EnemyOLDMAN
   - EnemyOLDWOMAN
   - EnemyMAN
+  - EnemyWOMAN
+  - EnemyBOY
+  - EnemyGIRL
+  - EnemyDECEASED
+  - EnemyMUMMY
+  - EnemyVULTURE
   layers:
   - Default
   - TransparentFX
