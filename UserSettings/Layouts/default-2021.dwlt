@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 0
-    y: 83
+    x: 10
+    y: 154
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
+  m_Maximized: 0
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 29
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -273,8 +273,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
-    y: 803
+    x: 1
+    y: 709
     width: 1348
     height: 236
   m_ViewDataDictionary: {fileID: 0}
@@ -295,22 +295,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/Vulture
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/Vulture
   m_LastFoldersGridSize: 75
   m_LastProjectPath: "C:\\Users\\Anton\\OneDrive\\\xC1rea de Trabalho\\Game2D\\Prova"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: ae6b0000
-    m_LastClickedID: 27566
-    m_ExpandedIDs: 00000000ae6b0000787000007c700000807000008270000086700000887000008a700000887100009e7100001a810000d081000052c1000084520100f408020054c80200acbd040000ca9a3b
+    scrollPos: {x: 0, y: 1000}
+    m_SelectedIDs: 02790000
+    m_LastClickedID: 30978
+    m_ExpandedIDs: 00000000f0740000f2740000f4740000f6740000f8740000fa740000fc740000fe74000000750000ba78000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -338,7 +338,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ae6b0000
+    m_ExpandedIDs: 00000000f0740000f2740000f4740000f6740000f8740000fa740000fc740000fe74000000750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 231
-    y: 121
+    y: 113
     width: 1348
     height: 669
   m_ViewDataDictionary: {fileID: 0}
@@ -785,8 +785,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1581
-    y: 113
+    x: 1591
+    y: 184
     width: 338
     height: 926
   m_ViewDataDictionary: {fileID: 0}
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 113
+    y: 19
     width: 230
     height: 926
   m_ViewDataDictionary: {fileID: 0}
@@ -839,9 +839,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4e640000
-      m_LastClickedID: 25678
-      m_ExpandedIDs: de34fcffe034fcfffeadfcff66acfdffd480feffc4e2feffb24dffffb0bcffff58e2ffff2cfbffff1e63000074630000386400004e6400005a6400009064000072650000ba660000f2680000
+      m_SelectedIDs: 02790000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2cfbffffce630000de630000ac640000166700007e670000a8670000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -885,8 +885,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
-    y: 113
+    x: 241
+    y: 184
     width: 1348
     height: 669
   m_ViewDataDictionary: {fileID: 0}
@@ -1146,9 +1146,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 14.946552, y: 35.30841, z: 0.1603242}
+    m_Target: {x: 17.283396, y: 32.328106, z: -0.030653464}
     speed: 2
-    m_Value: {x: 14.946552, y: 35.30841, z: 0.1603242}
+    m_Value: {x: 17.283396, y: 32.328106, z: -0.030653464}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1199,9 +1199,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.7491674
+    m_Target: 12.966865
     speed: 2
-    m_Value: 4.7491674
+    m_Value: 12.966865
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1339,8 +1339,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
-    y: 811
+    x: 413
+    y: 831
     width: 1348
     height: 236
   m_ViewDataDictionary: {fileID: 0}

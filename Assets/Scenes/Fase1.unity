@@ -3640,7 +3640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172898564}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.933, y: 17.678, z: 0}
+  m_LocalPosition: {x: 12.188, y: 17.744, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8405,6 +8405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454283311}
   - component: {fileID: 454283312}
+  - component: {fileID: 454283313}
   m_Layer: 0
   m_Name: VultureRange
   m_TagString: Untagged
@@ -8443,6 +8444,19 @@ CircleCollider2D:
   m_Offset: {x: -0.41680813, y: -0.049524307}
   serializedVersion: 2
   m_Radius: 0.46286106
+--- !u!114 &454283313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454283310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8600a749e48624a8ac3f3027237fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 137964792}
 --- !u!1 &455305732
 GameObject:
   m_ObjectHideFlags: 0
@@ -13141,7 +13155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715065873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.445, y: 16.61, z: 0}
+  m_LocalPosition: {x: 11.445, y: 16.232, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13162,8 +13176,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009045124, y: -0.02840519}
-  m_Size: {x: 0.14725971, y: 0.39146614}
+  m_Offset: {x: 0.0440588, y: -0.028404236}
+  m_Size: {x: 0.18616295, y: 0.29509735}
   m_Direction: 0
 --- !u!50 &715065877
 Rigidbody2D:
@@ -13180,7 +13194,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -13199,13 +13213,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 5
-  velocidade: 0.65
-  skin: {fileID: 137964792}
+  velocidade: 2
   pointA: {fileID: 1194484013}
   pointB: {fileID: 1402872659}
   pointC: {fileID: 172898565}
-  drop: {fileID: 508173630}
-  tempoDeEsperaNoPontoC: 5
+  tempoDeEsperaNoPontoC: 2
 --- !u!1 &726993235
 GameObject:
   m_ObjectHideFlags: 0
@@ -14873,7 +14885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851423254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.4, y: 36.95, z: 0}
+  m_LocalPosition: {x: 17.68, y: 36.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14896,8 +14908,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036697388, y: 0.030649185}
-  m_Size: {x: 0.20864487, y: 0.47180557}
+  m_Offset: {x: 0.037927628, y: 0.021968842}
+  m_Size: {x: 0.37353516, y: 0.48916626}
   m_Direction: 0
 --- !u!114 &851423260
 MonoBehaviour:
@@ -21556,7 +21568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194484012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.05, y: 18.62, z: 0}
+  m_LocalPosition: {x: 14.553, y: 19.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24332,7 +24344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402872658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.85, y: 18.61, z: 0}
+  m_LocalPosition: {x: 9.99, y: 19.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26299,12 +26311,12 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -0.12583256, y: 0.043792725}
-  - {x: -0.42836952, y: -0.4087906}
-  - {x: 0.07688522, y: -0.39613724}
-  - {x: 0.06721115, y: -0.45744705}
-  - {x: -0.12591171, y: -0.45954132}
-  - {x: -0.27578354, y: -0.46855927}
-  - {x: -0.59721375, y: -0.47121048}
+  - {x: -0.48373604, y: -0.43647385}
+  - {x: 0.6345043, y: -0.43173218}
+  - {x: 0.63669586, y: -0.54050064}
+  - {x: -0.08636284, y: -0.5425911}
+  - {x: -0.26787376, y: -0.5397415}
+  - {x: -0.72771835, y: -0.5384407}
   - {x: -0.2594347, y: 0.07575989}
   - {x: -0.14441109, y: 0.1385479}
   m_AdjacentStartPoint: {x: 0, y: 0}
