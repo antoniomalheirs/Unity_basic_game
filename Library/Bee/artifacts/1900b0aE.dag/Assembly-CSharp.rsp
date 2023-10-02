@@ -392,6 +392,7 @@
 "Assets/2D Platformer/Scripts/GameManager.cs"
 "Assets/2D Platformer/Scripts/PlayerController.cs"
 "Assets/2D Platformer/Scripts/PlayerDeathState.cs"
+"Assets/CriarCenario.cs"
 "Assets/Scripts/Boy/Boy.cs"
 "Assets/Scripts/Boy/BoyAttackCollider.cs"
 "Assets/Scripts/Chicken/Chicken.cs"
