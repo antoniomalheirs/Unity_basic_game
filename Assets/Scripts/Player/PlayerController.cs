@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform skin;
     int ataque;
     private float dashTime;
-    public int speed=3;
+    public float speed=3;
 
     private void Start()
     {
@@ -62,6 +62,11 @@ public class PlayerController : MonoBehaviour
         {
             this.enabled = false;
         }*/
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 
     private void FixedUpdate()

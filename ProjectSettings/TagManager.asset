@@ -21,6 +21,7 @@ TagManager:
   - EnemyDECEASED
   - EnemyMUMMY
   - EnemyVULTURE
+  - Water
   layers:
   - Default
   - TransparentFX
