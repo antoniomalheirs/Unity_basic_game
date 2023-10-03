@@ -107,9 +107,9 @@ public class CriarCenario : MonoBehaviour
                     newMap[x, y] = 1;
                 }
 
-                if (newMap[x, y] == 3)
+                if (newMap[x, y] == 4)
                 {
-                    PintaVizinho(x, y, 2, newMap);
+                    PintaVizinho(x, y, 1, newMap);
                 }
             }
         }
@@ -140,7 +140,7 @@ public class CriarCenario : MonoBehaviour
         return count;
     }
 
-   void PintaVizinho(int x, int y, int id, int[,] tempmap)
+    void PintaVizinho(int x, int y, int id, int[,] tempmap)
     {
         for (int vizinhoX = x - 1; vizinhoX <= x + 1; vizinhoX++)
         {
