@@ -660,6 +660,15 @@ MonoBehaviour:
   waterTile: {fileID: 11400000, guid: 38cb4319c3644724c804b705710eaeb4, type: 2}
   groundTile: {fileID: 11400000, guid: 323084a7f4a8aa34a8117f706ae4f2f3, type: 2}
   flowerTile: {fileID: 11400000, guid: 5c4661ef33760774cb63decf5e21effa, type: 2}
+  bordaeTile: {fileID: 11400000, guid: e706e4f157039d64f87f2ff96389af94, type: 2}
+  bordarTile: {fileID: 11400000, guid: 7d23b03151835ad4992f3b3a37415b9e, type: 2}
+  lateraleTile: {fileID: 11400000, guid: 8c6960f387399fa4dbbc6c4b1baf5558, type: 2}
+  lateralrTile: {fileID: 11400000, guid: 71be9813743ff3e40b34a5f106313f4d, type: 2}
+  inferioreTile: {fileID: 11400000, guid: d796ff099fd334545a33e53663a7577a, type: 2}
+  inferiorrTile: {fileID: 11400000, guid: e506433e2e843984fb00af7d8f05db46, type: 2}
+  inferiorTile: {fileID: 11400000, guid: bbf25683b62aeac4eaa3bb5b94b55ed7, type: 2}
+  espacoEntrePlataformasY: 3
+  espacoEntrePlataformasX: 8
 --- !u!4 &630924160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8415004476430365898, guid: e32c20edadbb94d4b86f3faa7d5b4f24, type: 3}
