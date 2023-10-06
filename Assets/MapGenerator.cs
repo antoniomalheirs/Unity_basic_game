@@ -21,9 +21,23 @@ public class MapGenerator : MonoBehaviour
     public int espacoEntrePlataformasX = 8;
 
     public GameObject[] prefabArray;
-
+    public GameObject playerPrefab;
+    public GameObject prefabDecorativo;
 
     private MapCell[,] mapa;
+
+    public class MapCell
+    {
+        public string terreno { get; set; }
+
+        // Construtor sem parâmetros
+        public MapCell()
+        {
+            // Inicialize terreno com um valor padrão ou deixe vazio, dependendo das suas necessidades
+            terreno = "";
+        }
+    }
+
 
     private Dictionary<string, string[]> regras = new Dictionary<string, string[]>();
 
@@ -35,7 +49,10 @@ public class MapGenerator : MonoBehaviour
         regras["<terreno>"] = new string[] { "Floor", "Water", "Ground", "Flower", "BordaE", "BordaR", "LateralE", "LateralR", "InferiorE", "InferiorR", "Inferior", "MontanhaE", "MontanhaR", "PlatE", "PlatR" };
         regras["<mapa>"] = new string[] {"<terreno> "};
 
+
+
         Desenhamapa();
+
     }
 
     void Update()
@@ -43,12 +60,8 @@ public class MapGenerator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Desenhamapa();
+            
         }
-    }
-
-    public class MapCell
-    {
-        public string terreno; // Tipo de terreno ("Floor", "Water", "Ground", etc.)
     }
 
     private string ExpansorRegra(string regra)
@@ -65,28 +78,41 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void Desenhamapa()
+    Vector3 EncontrarplatPos(int x, int y)
+    {
+        Vector3 plataformaSpawnPosition = new Vector3(x, y, 0f); 
+        return plataformaSpawnPosition;
+    }
+
+    void playerSpawnprimeiraplat(Vector3 position)
+    {
+        position.y += playerPrefab.transform.localScale.y / 2f;
+
+        Instantiate(playerPrefab, position, Quaternion.identity);
+    }
+
+    void Desenhamapa()
     {
         LimparTilemap();
         LimparPrefabs();
 
-        int largura = Random.Range(3, 5)/*5*/; 
-        int altura = Random.Range(2, 4)/*4*/; 
+        int largura = Random.Range(3, 5);
+        int altura = Random.Range(2, 4);
 
-        int nlargura = Random.Range(2, 6)/*6*/; 
-        int naltura = Random.Range(2, 3)/*3*/;
+        int nlargura = Random.Range(2, 6);
+        int naltura = Random.Range(2, 3);
 
-        int n2largura = Random.Range(2, 5)/*3*/;
-        int n2altura = Random.Range(2, 3)/*2*/;
+        int n2largura = Random.Range(2, 5);
+        int n2altura = Random.Range(2, 3);
 
-        int n3largura = Random.Range(6, 14)/*3*/;
-        int n3altura = Random.Range(6, 12)/*2*/;
+        int n3largura = Random.Range(6, 14);
+        int n3altura = Random.Range(6, 12);
 
-        int proximaPlataformaY = Random.Range(3, 6);//espacoEntrePlataformasY;
-        int proximaPlataformaX = Random.Range(8, 12);//espacoEntrePlataformasX;
+        int proximaPlataformaY = Random.Range(3, 6);
+        int proximaPlataformaX = Random.Range(8, 12);
 
-        mapa = new MapCell[80, 80]; // Inicializa o mapa com a largura e altura desejadas
- 
+        mapa = new MapCell[80, 80];
+
         // Plataforma 0
         for (int y = 0; y < altura; y++)
         {
@@ -95,13 +121,14 @@ public class MapGenerator : MonoBehaviour
                 string terreno = ExpansorRegra("<terreno>");
                 int escolha = Random.Range(0, 2);
 
-                if (terreno == "Water" || terreno == "Floor" || terreno == "BordaE" || terreno ==  "BordaR" || terreno == "LateralE" || terreno == "LateralR" || terreno == "InferiorE" || terreno == "InferiorR" || terreno == "Inferior" && y != altura-1 || y != 0)
+                if (terreno == "Water" || terreno == "Floor" || terreno == "BordaE" || terreno == "BordaR" || terreno == "LateralE" || terreno == "LateralR" || terreno == "InferiorE" || terreno == "InferiorR" || terreno == "Inferior" && y != altura - 1 || y != 0)
                 {
-                    if (x == 0 || x == largura-1)
+                    if (x == 0 || x == largura - 1)
                     {
                         if (x == 0)
                         {
                             terreno = "LateralE";
+
                         }
                         else
                         {
@@ -109,7 +136,7 @@ public class MapGenerator : MonoBehaviour
                         }
 
                     }
-                    else 
+                    else
                     {
                         if (escolha == 0)
                         {
@@ -127,20 +154,21 @@ public class MapGenerator : MonoBehaviour
                     };
                 }
 
-                
-                if (y == altura-1)
+
+                if (y == altura - 1)
                 {
-                    if (x == 0 || x == largura-1)
+                    if (x == 0 || x == largura - 1)
                     {
                         if (x == 0)
                         {
                             terreno = "BordaE";
-                        } 
-                        else 
+                            playerSpawnprimeiraplat(EncontrarplatPos(x, y));
+                        }
+                        else
                         {
                             terreno = "BordaR";
                         }
-               
+
                     }
                     else
                     {
@@ -245,19 +273,19 @@ public class MapGenerator : MonoBehaviour
                     Instantiate(prefabArray[7], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("InferiorE") )
+                else if (celula.terreno.Equals("InferiorE"))
                 {
                     tile = inferioreTile;
                     Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("InferiorR") )
+                else if (celula.terreno.Equals("InferiorR"))
                 {
                     tile = inferiorrTile;
                     Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("Inferior") )
+                else if (celula.terreno.Equals("Inferior"))
                 {
                     tile = inferiorTile;
                     Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
@@ -269,8 +297,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
         //------------------------------------------
-        proximaPlataformaY = Random.Range(3, 6);//espacoEntrePlataformasY;
-        proximaPlataformaX = Random.Range(8, 12);//espacoEntrePlataformasX;
+        proximaPlataformaY = Random.Range(3, 6);
+        proximaPlataformaX = Random.Range(8, 12);
         // Plataforma 1
         for (int y = proximaPlataformaY; y < proximaPlataformaY + naltura; y++)
         {
@@ -279,9 +307,9 @@ public class MapGenerator : MonoBehaviour
                 string terreno = ExpansorRegra("<terreno>");
                 int escolha = Random.Range(0, 2);
 
-                if (terreno == "Water" || terreno == "Floor" || terreno == "BordaE" || terreno ==  "BordaR" || terreno == "LateralE" || terreno == "LateralR" || terreno == "InferiorE" || terreno == "InferiorR" || terreno == "Inferior" && y != (proximaPlataformaY + naltura) - 1 || y != proximaPlataformaY)
+                if (terreno == "Water" || terreno == "Floor" || terreno == "BordaE" || terreno == "BordaR" || terreno == "LateralE" || terreno == "LateralR" || terreno == "InferiorE" || terreno == "InferiorR" || terreno == "Inferior" && y != (proximaPlataformaY + naltura) - 1 || y != proximaPlataformaY)
                 {
-                    if (x == proximaPlataformaX || x == (proximaPlataformaX + nlargura) -1)
+                    if (x == proximaPlataformaX || x == (proximaPlataformaX + nlargura) - 1)
                     {
                         if (x == proximaPlataformaX)
                         {
@@ -293,7 +321,7 @@ public class MapGenerator : MonoBehaviour
                         }
 
                     }
-                    else 
+                    else
                     {
                         if (escolha == 0)
                         {
@@ -311,7 +339,7 @@ public class MapGenerator : MonoBehaviour
                     };
                 }
 
-                
+
                 if (y == (proximaPlataformaY + naltura) - 1)
                 {
                     if (x == proximaPlataformaX || x == (proximaPlataformaX + nlargura) - 1)
@@ -319,12 +347,12 @@ public class MapGenerator : MonoBehaviour
                         if (x == proximaPlataformaX)
                         {
                             terreno = "BordaE";
-                        } 
-                        else 
+                        }
+                        else
                         {
                             terreno = "BordaR";
                         }
-               
+
                     }
                     else
                     {
@@ -454,12 +482,12 @@ public class MapGenerator : MonoBehaviour
             }
         }
         //------------------------------------------
-        proximaPlataformaY = Random.Range(3, 6);//espacoEntrePlataformasY;
-        proximaPlataformaX = Random.Range(8, 12);//espacoEntrePlataformasX;
+        proximaPlataformaY = Random.Range(3, 6);
+        proximaPlataformaX = Random.Range(8, 12);
         // Plataforma 2
-        for (int y = (proximaPlataformaY*2); y < (proximaPlataformaY*2)+ n2altura; y++)
+        for (int y = (proximaPlataformaY * 2); y < (proximaPlataformaY * 2) + n2altura; y++)
         {
-            for (int x = (proximaPlataformaX*2); x < (proximaPlataformaX*2) + n2largura; x++)
+            for (int x = (proximaPlataformaX * 2); x < (proximaPlataformaX * 2) + n2largura; x++)
             {
                 string terreno = ExpansorRegra("<terreno>");
                 int escolha = Random.Range(0, 2);
@@ -529,7 +557,7 @@ public class MapGenerator : MonoBehaviour
                         terreno = terreno
                     };
                 }
-                else if (y == proximaPlataformaY *  2)
+                else if (y == proximaPlataformaY * 2)
                 {
                     if (x == proximaPlataformaX * 2 || x == (proximaPlataformaX * 2) + n2largura - 1)
                     {
@@ -639,8 +667,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
         //------------------------------------------
-        proximaPlataformaY = Random.Range(3, 4);//espacoEntrePlataformasY;
-        proximaPlataformaX = Random.Range(8, 12);//espacoEntrePlataformasX;
+        proximaPlataformaY = Random.Range(3, 4);
+        proximaPlataformaX = Random.Range(8, 12);
         // Plataforma 3
         for (int y = (proximaPlataformaY * 3); y < (proximaPlataformaY * 3) + n3altura; y++)
         {
@@ -798,7 +826,7 @@ public class MapGenerator : MonoBehaviour
                             terreno = "MontanhaR";
                         }
                     }
-                    else 
+                    else
                     {
                         if (escolha == 0)
                         {
@@ -809,7 +837,7 @@ public class MapGenerator : MonoBehaviour
                             terreno = "Flower";
                         }
                     }
-                   
+
                     mapa[x, y] = new MapCell
                     {
 
@@ -852,7 +880,7 @@ public class MapGenerator : MonoBehaviour
                             terreno = "MontanhaR";
                         };
                     }
-                    else 
+                    else
                     {
                         if (escolha == 0)
                         {
@@ -1033,6 +1061,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
         //------------------------------------------
+
     }
 
     void LimparTilemap()
@@ -1063,6 +1092,11 @@ public class MapGenerator : MonoBehaviour
         {
             Destroy(objeto);
         }
-        
+
     }
+
+
 }
+
+
+
