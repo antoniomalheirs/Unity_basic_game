@@ -655,18 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8178c4b8f2fe14bb57ca53cf967c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 764457999}
-  floorTile: {fileID: 11400000, guid: 8734bc78ee38dbb4c941780b4a7eba65, type: 2}
-  waterTile: {fileID: 11400000, guid: 38cb4319c3644724c804b705710eaeb4, type: 2}
-  groundTile: {fileID: 11400000, guid: 323084a7f4a8aa34a8117f706ae4f2f3, type: 2}
-  flowerTile: {fileID: 11400000, guid: 5c4661ef33760774cb63decf5e21effa, type: 2}
-  bordaeTile: {fileID: 11400000, guid: e706e4f157039d64f87f2ff96389af94, type: 2}
-  bordarTile: {fileID: 11400000, guid: 7d23b03151835ad4992f3b3a37415b9e, type: 2}
-  lateraleTile: {fileID: 11400000, guid: 8c6960f387399fa4dbbc6c4b1baf5558, type: 2}
-  lateralrTile: {fileID: 11400000, guid: 71be9813743ff3e40b34a5f106313f4d, type: 2}
-  inferioreTile: {fileID: 11400000, guid: d796ff099fd334545a33e53663a7577a, type: 2}
-  inferiorrTile: {fileID: 11400000, guid: e506433e2e843984fb00af7d8f05db46, type: 2}
-  inferiorTile: {fileID: 11400000, guid: bbf25683b62aeac4eaa3bb5b94b55ed7, type: 2}
   espacoEntrePlataformasY: 3
   espacoEntrePlataformasX: 8
   prefabArray:
@@ -685,6 +673,8 @@ MonoBehaviour:
   - {fileID: 5054371654844953178, guid: feaaa050a210e974ca4d2ee1a28bcfe9, type: 3}
   - {fileID: 6454526938816044242, guid: 1b08ecd25beaf664cbb0abb6173eb537, type: 3}
   - {fileID: 6454526938816044242, guid: 8defac7f242170f42b710fa09974e032, type: 3}
+  - {fileID: 2853697720552395333, guid: 2fc69978d5250804db8d7eaade088407, type: 3}
+  - {fileID: 7617067901622329393, guid: d6e4aa0b9b5e00340b7738d8e8ff2e2e, type: 3}
   playerPrefab: {fileID: 8449162140244550777, guid: a60bb8c23693b1545a0e8cc1b25da499, type: 3}
   prefabDecorativo: {fileID: 1566309524}
 --- !u!4 &630924160 stripped
