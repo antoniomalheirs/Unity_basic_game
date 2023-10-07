@@ -29,15 +29,15 @@ public class MapGenerator : MonoBehaviour
     public class MapCell
     {
         public string terreno { get; set; }
+        public GameObject objetoInstanciado;
 
         // Construtor sem parâmetros
         public MapCell()
         {
-            // Inicialize terreno com um valor padrão ou deixe vazio, dependendo das suas necessidades
             terreno = "";
+            objetoInstanciado = null;
         }
     }
-
 
     private Dictionary<string, string[]> regras = new Dictionary<string, string[]>();
 
@@ -47,19 +47,18 @@ public class MapGenerator : MonoBehaviour
         //tilemap.size = new Vector3Int(0, 0, 0);
 
         regras["<terreno>"] = new string[] { "Floor", "Water", "Ground", "Flower", "BordaE", "BordaR", "LateralE", "LateralR", "InferiorE", "InferiorR", "Inferior", "MontanhaE", "MontanhaR", "PlatE", "PlatR" };
-        regras["<mapa>"] = new string[] {"<terreno> "};
-
-
+        regras["<mapa>"] = new string[] { "<terreno> " };
 
         Desenhamapa();
-
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+
             Desenhamapa();
+            PoliMapa(mapa);
             
         }
     }
@@ -80,7 +79,7 @@ public class MapGenerator : MonoBehaviour
 
     Vector3 EncontrarplatPos(int x, int y)
     {
-        Vector3 plataformaSpawnPosition = new Vector3(x, y, 0f); 
+        Vector3 plataformaSpawnPosition = new Vector3(x, y, 0f);
         return plataformaSpawnPosition;
     }
 
@@ -228,7 +227,8 @@ public class MapGenerator : MonoBehaviour
                 if (celula.terreno.Equals("Floor"))
                 {
                     tile = floorTile;
-                    Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Water"))
@@ -237,34 +237,39 @@ public class MapGenerator : MonoBehaviour
                     Instantiate(prefabArray[1], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("Ground") && y != altura - 1)
+                else if (celula.terreno.Equals("Ground"))
                 {
                     tile = groundTile;
-                    Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("Flower") && y != altura - 1)
+                else if (celula.terreno.Equals("Flower"))
                 {
                     tile = flowerTile;
-                    Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("BordaE") && y == altura - 1)
+                else if (celula.terreno.Equals("BordaE"))
                 {
                     tile = bordaeTile;
-                    Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
 
                 }
-                else if (celula.terreno.Equals("BordaR") && y == altura - 1)
+                else if (celula.terreno.Equals("BordaR"))
                 {
                     tile = bordarTile;
-                    Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralE"))
                 {
                     tile = lateraleTile;
-                    Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralR"))
@@ -276,19 +281,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("InferiorE"))
                 {
                     tile = inferioreTile;
-                    Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("InferiorR"))
                 {
                     tile = inferiorrTile;
-                    Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Inferior"))
                 {
                     tile = inferiorTile;
-                    Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaE"))
+                {
+                    tile = inferiorrTile;
+                    //Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaR"))
+                {
+                    tile = inferiorTile;
+                    //Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
 
                 }
 
@@ -413,7 +435,8 @@ public class MapGenerator : MonoBehaviour
                 if (celula.terreno.Equals("Floor"))
                 {
                     tile = floorTile;
-                    Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Water"))
@@ -425,31 +448,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("Ground"))
                 {
                     tile = groundTile;
-                    Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Flower"))
                 {
                     tile = flowerTile;
-                    Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaE"))
                 {
                     tile = bordaeTile;
-                    Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaR"))
                 {
                     tile = bordarTile;
-                    Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralE"))
                 {
                     tile = lateraleTile;
-                    Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralR"))
@@ -461,19 +489,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("InferiorE"))
                 {
                     tile = inferioreTile;
-                    Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("InferiorR"))
                 {
                     tile = inferiorrTile;
-                    Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Inferior"))
                 {
                     tile = inferiorTile;
-                    Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaE"))
+                {
+                    tile = inferiorrTile;
+                    //Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaR"))
+                {
+                    tile = inferiorTile;
+                    //Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
 
                 }
 
@@ -598,7 +643,8 @@ public class MapGenerator : MonoBehaviour
                 if (celula.terreno.Equals("Floor"))
                 {
                     tile = floorTile;
-                    Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Water"))
@@ -610,31 +656,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("Ground"))
                 {
                     tile = groundTile;
-                    Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Flower"))
                 {
                     tile = flowerTile;
-                    Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaE"))
                 {
                     tile = bordaeTile;
-                    Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaR"))
                 {
                     tile = bordarTile;
-                    Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralE"))
                 {
                     tile = lateraleTile;
-                    Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralR"))
@@ -646,19 +697,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("InferiorE"))
                 {
                     tile = inferioreTile;
-                    Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("InferiorR"))
                 {
                     tile = inferiorrTile;
-                    Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Inferior"))
                 {
                     tile = inferiorTile;
-                    Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaE"))
+                {
+                    tile = inferiorrTile;
+                    //Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("MontanhaR"))
+                {
+                    tile = inferiorTile;
+                    //Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
 
                 }
 
@@ -980,7 +1048,8 @@ public class MapGenerator : MonoBehaviour
                 if (celula.terreno.Equals("Floor"))
                 {
                     tile = floorTile;
-                    Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[0], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Water"))
@@ -992,31 +1061,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("Ground"))
                 {
                     tile = groundTile;
-                    Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[2], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Flower"))
                 {
                     tile = flowerTile;
-                    Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[3], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaE"))
                 {
                     tile = bordaeTile;
-                    Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[4], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("BordaR"))
                 {
                     tile = bordarTile;
-                    Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[5], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralE"))
                 {
                     tile = lateraleTile;
-                    Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[6], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("LateralR"))
@@ -1028,31 +1102,36 @@ public class MapGenerator : MonoBehaviour
                 else if (celula.terreno.Equals("InferiorE"))
                 {
                     tile = inferioreTile;
-                    Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[8], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("InferiorR"))
                 {
                     tile = inferiorrTile;
-                    Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[10], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("Inferior"))
                 {
                     tile = inferiorTile;
-                    Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[9], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("MontanhaE"))
                 {
                     tile = inferiorrTile;
-                    Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[11], posicaocelula, Quaternion.identity);
 
                 }
                 else if (celula.terreno.Equals("MontanhaR"))
                 {
                     tile = inferiorTile;
-                    Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
+                    //Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
 
                 }
 
@@ -1061,7 +1140,95 @@ public class MapGenerator : MonoBehaviour
             }
         }
         //------------------------------------------
+    }
 
+    void PrintMapa(MapCell[,] mapa)
+    {
+        int altura = mapa.GetLength(0);
+        int largura = mapa.GetLength(1);
+
+        for (int y = 0; y < altura; y++)
+        {
+            string line = " ";
+            for (int x = 0; x < largura; x++)
+            {
+                // Verifique se a célula não é nula antes de adicionar ao texto
+                if (mapa[x, y] != null)
+                {
+                    line += mapa[x, y].terreno + " ";
+                }
+                else
+                {
+                    line += "* ";
+                }
+            }
+            Debug.Log(line);
+        }
+    }
+
+    void PoliMapa(MapCell[,] mapa)
+    {
+        int altura = mapa.GetLength(0);
+        int largura = mapa.GetLength(1);
+
+        int count = 0;
+        int countW = 0;
+        int countM = 0;
+
+        for (int y = 0; y < altura; y++)
+        {
+            for (int x = 0; x < largura; x++)
+            {
+                if (mapa[x, y] != null)
+                {
+                    if (mapa[x, y].terreno == "Floor")
+                    {
+                        count++;
+                        Debug.Log(count.ToString() + "F");
+                        //Instantiate(prefabArray[1], new Vector3(x, y, 0f), Quaternion.identity);
+                    }
+                    if (mapa[x, y].terreno == "Water")
+                    {
+                        countW++;
+                        Debug.Log(countW.ToString() + "W");
+                        //Instantiate(prefabArray[1], new Vector3(x, y, 0f), Quaternion.identity);
+                    }
+                    if (mapa[x, y].terreno == "MontanhaE")
+                    {
+                        if (mapa[x + 1, y + 1].terreno == "MontanhaE")
+                        {
+                            if (mapa[x + 1, y + 1].terreno == "MontanhaE")
+                            {
+                                GameObject objetoNaPosicao = mapa[x + 1, y].objetoInstanciado;
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 1, y].terreno = "MontagemME";
+                                //Instantiate(prefabArray[13], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 1,y].objetoInstanciado = Instantiate(prefabArray[13], new Vector3Int(x + 1, y, 0), Quaternion.identity);
+                            }
+                        }
+                    }
+                    if (mapa[x, y].terreno == "MontanhaR")
+                    {
+                        if (mapa[x - 1, y + 1].terreno == "MontanhaR")
+                        {
+                            if (mapa[x - 1, y + 1].terreno == "MontanhaR")
+                            {
+                                GameObject objetoNaPosicao = mapa[x - 1, y].objetoInstanciado;
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 1, y].terreno = "MontagemMR";
+                                //Instantiate(prefabArray[14], new Vector3Int(x-1, y, 0), Quaternion.identity);
+                                mapa[x - 1, y].objetoInstanciado = Instantiate(prefabArray[14], new Vector3Int(x - 1, y, 0), Quaternion.identity);
+                            }
+
+                        }
+
+                    }
+                }
+                
+            }
+        }
     }
 
     void LimparTilemap()
