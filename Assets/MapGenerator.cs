@@ -33,7 +33,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        regras["<terreno>"] = new string[] { "Floor", "Water", "Ground", "Flower", "BordaE", "BordaR", "LateralE", "LateralR", "InferiorE", "InferiorR", "Inferior", "MontanhaE", "MontanhaR", "Enemy" };
+        regras["<terreno>"] = new string[] { "Floor", "Water", "Ground", "Flower", "BordaE", "BordaR", "LateralE", "LateralR", "InferiorE", "InferiorR", "Inferior", "MontanhaE", "MontanhaR", "Enemy", "PlatE", "PlatR", "PlatM" };
         regras["<mapa>"] = new string[] { "<terreno> " };
 
         Desenhamapa();
@@ -845,11 +845,42 @@ public class MapGenerator : MonoBehaviour
                     {
                         if (x == proximaPlataformaX * 3)
                         {
-                            terreno = "InferiorE";
+                            terreno = "InferiorE";//-------------
+                            mapa[x - 1, y] = new MapCell
+                            {
+                                terreno = "PlatM"
+                            };
+
+                            mapa[x - 2, y] = new MapCell
+                            {
+                                terreno = "PlatM"
+                            };
+
+                            mapa[x - 3, y] = new MapCell
+                            {
+                                terreno = "PlatE"
+                            };
+
                         }
                         else
                         {
-                            terreno = "InferiorR";
+                            terreno = "InferiorR";//-------------
+
+
+                            mapa[x + 1, y] = new MapCell
+                            {
+                                terreno = "PlatM"
+                            };
+
+                            mapa[x + 2, y] = new MapCell
+                            {
+                                terreno = "PlatM"
+                            };
+
+                            mapa[x + 3, y] = new MapCell
+                            {
+                                terreno = "PlatR"
+                            };
                         }
 
                     }
@@ -1106,7 +1137,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         //Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
                         posicaocelula = new Vector3Int(x, y + 1, 0);
-                        celula.objetoEnemy = Instantiate(prefabArray[15], posicaocelula, Quaternion.identity);
+                        celula.objetoEnemy = Instantiate(prefabArray[16], posicaocelula, Quaternion.identity);
                     }
 
                 }
@@ -1176,6 +1207,24 @@ public class MapGenerator : MonoBehaviour
                     celula.objetoInstanciado = Instantiate(prefabArray[12], posicaocelula, Quaternion.identity);
 
                 }
+                else if (celula.terreno.Equals("PlatE"))
+                {
+                    //Instantiate(prefabArray[17], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[17], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("PlatR"))
+                {
+                    //Instantiate(prefabArray[18], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[18], posicaocelula, Quaternion.identity);
+
+                }
+                else if (celula.terreno.Equals("PlatM"))
+                {
+                    //Instantiate(prefabArray[19], posicaocelula, Quaternion.identity);
+                    celula.objetoInstanciado = Instantiate(prefabArray[19], posicaocelula, Quaternion.identity);
+
+                }
             }
         }
         //------------------------------------------
@@ -1229,6 +1278,7 @@ public class MapGenerator : MonoBehaviour
 
                        
                     }
+                    
                     if (mapa[x, y].terreno == "Water")
                     {
                         countW++;
@@ -1236,6 +1286,7 @@ public class MapGenerator : MonoBehaviour
 
                         
                     }
+                    
                     if (mapa[x, y].terreno == "MontanhaE")
                     {
                         if (mapa[x + 1, y + 1].terreno == "MontanhaE")
@@ -1251,8 +1302,9 @@ public class MapGenerator : MonoBehaviour
                             mapa[x + 1, y].objetoInstanciado = Instantiate(prefabArray[13], new Vector3Int(x + 1, y, 0), Quaternion.identity);
 
                         }
+                        
                     }
-                    if (mapa[x, y].terreno == "MontanhaR")
+                    else if (mapa[x, y].terreno == "MontanhaR")
                     {
                         if (mapa[x - 1, y + 1].terreno == "MontanhaR")
                         {
@@ -1266,6 +1318,172 @@ public class MapGenerator : MonoBehaviour
                             mapa[x - 1, y].objetoInstanciado = Instantiate(prefabArray[14], new Vector3Int(x - 1, y, 0), Quaternion.identity);
 
                         }
+                        
+                    }
+
+                    if (mapa[x, y].terreno == "InferiorE")
+                    {
+                        if (mapa[x, y + 1].terreno == "MontanhaE")
+                        {
+
+                            if (mapa[x - 1, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 1, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 1, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 1, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x - 1, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x - 1, y].terreno == "PlatE")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 1, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 1, y].terreno = "PlatE";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 1, y].objetoInstanciado = Instantiate(prefabArray[17], new Vector3Int(x - 1, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoE: " + mapa[x, y].terreno);
+                            }
+                            
+                            if (mapa[x - 2, y].terreno == "PlatE")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 2, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 2, y].terreno = "PlatE";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 2, y].objetoInstanciado = Instantiate(prefabArray[17], new Vector3Int(x - 2, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoE: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x - 2, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 2, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 2, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 2, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x - 2, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+
+                            if (mapa[x - 3, y].terreno == "PlatE")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 3, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 3, y].terreno = "PlatE";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 3, y].objetoInstanciado = Instantiate(prefabArray[17], new Vector3Int(x - 3, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoE: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x - 3, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x - 3, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x - 3, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x - 3, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x - 3, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+
+                        }
+
+                    }
+                    else if (mapa[x, y].terreno == "InferiorR")
+                    {
+                        if (mapa[x, y + 1].terreno == "MontanhaR")
+                        {
+
+                            if (mapa[x + 1, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 1, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 1, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 1, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x + 1, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x + 1, y].terreno == "PlatR")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 1, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 1, y].terreno = "PlatR";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 1, y].objetoInstanciado = Instantiate(prefabArray[18], new Vector3Int(x + 1, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoR: " + mapa[x, y].terreno);
+                            }
+                            
+                            if (mapa[x + 2, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 2, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 2, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 2, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x + 2, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x + 2, y].terreno == "PlatR")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 2, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 2, y].terreno = "PlatR";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 2, y].objetoInstanciado = Instantiate(prefabArray[18], new Vector3Int(x + 2, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoR: " + mapa[x, y].terreno);
+                            }
+
+                            if (mapa[x + 3, y].terreno == "PlatM")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 3, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 3, y].terreno = "PlatM";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 3, y].objetoInstanciado = Instantiate(prefabArray[19], new Vector3Int(x + 3, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoM: " + mapa[x, y].terreno);
+                            }
+                            else if (mapa[x + 3, y].terreno == "PlatR")
+                            {
+
+                                GameObject objetoNaPosicao = mapa[x + 3, y].objetoInstanciado;
+
+                                Destroy(objetoNaPosicao);
+
+                                mapa[x + 3, y].terreno = "PlatR";
+                                //Instantiate(prefabArray[17], new Vector3Int(x+1, y, 0), Quaternion.identity);
+                                mapa[x + 3, y].objetoInstanciado = Instantiate(prefabArray[18], new Vector3Int(x + 3, y, 0), Quaternion.identity);
+                                Debug.Log("x: " + x + ", y: " + y + ", TerrenoR: " + mapa[x, y].terreno);
+                            }
+                        }
                     }
                 }
             }
@@ -1277,6 +1495,7 @@ public class MapGenerator : MonoBehaviour
         GameObject[] objetosDestrutiveis = GameObject.FindGameObjectsWithTag("Floor");
         GameObject[] objetosDestrutiveis2 = GameObject.FindGameObjectsWithTag("Water");
         GameObject[] objetosDestrutiveis3 = GameObject.FindGameObjectsWithTag("EnemyDECEASED");
+        GameObject[] objetosDestrutiveis4 = GameObject.FindGameObjectsWithTag("EnemyMUMMY");
 
         foreach (GameObject objeto in objetosDestrutiveis)
         {
@@ -1289,6 +1508,11 @@ public class MapGenerator : MonoBehaviour
         }
 
         foreach (GameObject objeto in objetosDestrutiveis3)
+        {
+            Destroy(objeto);
+        }
+
+        foreach (GameObject objeto in objetosDestrutiveis4)
         {
             Destroy(objeto);
         }

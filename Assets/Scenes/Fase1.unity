@@ -675,6 +675,9 @@ MonoBehaviour:
   - {fileID: 6454526938816044242, guid: 8defac7f242170f42b710fa09974e032, type: 3}
   - {fileID: 2853697720552395333, guid: 2fc69978d5250804db8d7eaade088407, type: 3}
   - {fileID: 7617067901622329393, guid: d6e4aa0b9b5e00340b7738d8e8ff2e2e, type: 3}
+  - {fileID: 150394854415548036, guid: 5e4fb83dc2eff6c4e865625091e505be, type: 3}
+  - {fileID: 8953860509336598347, guid: 8bb24d38eeecce34a9a421d354d65228, type: 3}
+  - {fileID: 150394854415548036, guid: 7952823670178f044b3a28703895d20e, type: 3}
   playerPrefab: {fileID: 8449162140244550777, guid: a60bb8c23693b1545a0e8cc1b25da499, type: 3}
   prefabDecorativo: {fileID: 1566309524}
 --- !u!4 &630924160 stripped
