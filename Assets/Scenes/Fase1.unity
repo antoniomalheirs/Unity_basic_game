@@ -620,7 +620,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2142293323}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &599725400
 MonoBehaviour:
@@ -655,8 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8178c4b8f2fe14bb57ca53cf967c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  espacoEntrePlataformasY: 3
-  espacoEntrePlataformasX: 8
   prefabArray:
   - {fileID: 2093084680492164497, guid: 5d07c96720268d34a84307f54f802306, type: 3}
   - {fileID: 7968223812112495716, guid: 1f70f1f0c06bed54690707a9f47e2fd4, type: 3}
@@ -807,7 +805,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2142293323}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &764457998
 TilemapRenderer:
@@ -2309,8 +2307,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 599725399}
   - {fileID: 764457997}
+  - {fileID: 599725399}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
